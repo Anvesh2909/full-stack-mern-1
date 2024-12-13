@@ -4,28 +4,32 @@ import dbConfig from "../../database/dbConfig.js";
 import jwt from "jsonwebtoken";
 import User from "../../database/models/user.js";
 import bcrypt from "bcrypt";
+import authenticate from "../../middleware/authenticate.js";
 dotenv.config();
 dbConfig();
 const router = express.Router();
 const generateToken = (payload, secret, expiresIn = "1d") => {
     return jwt.sign(payload, secret, { expiresIn });
 };
-
-router.post('/signup', async (req, res) => {
+router.post('/signup', authenticate,async (req, res) => {
     try {
         const { username, email, password } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
+        const existUser = await User.findOne({ email });
+        if(existUser){
+            return res.status(401).json({ message: "User already exists" });
+        }
         const user = await User.create({ username, email, password: hashedPassword });
         const token = generateToken({ userId: user._id }, process.env.JWT_SECRET);
         res.cookie("token", token, { httpOnly: true, secure: false });
-        res.status(201).json({ message: "User created successfully", user });
+        res.status(201).json({ message: "User created successfully", user,token });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Server error" });
     }
 });
 
-router.post('/login', async (req, res) => {
+router.post('/login', authenticate,async (req, res) => {
     try{
         const { email, password } = req.body;
         const user = await User.findOne({ email });
@@ -38,9 +42,10 @@ router.post('/login', async (req, res) => {
         }
         const token = generateToken({ userId: user._id }, process.env.JWT_SECRET);
         res.cookie("token", token, { httpOnly: true, secure: false });
-        res.status(200).json({ message: "Login successful", user });
+        res.status(200).json({ message: "Login successful", user, token });
     }catch (e) {
         console.log(e);
+        res.status(500).json({ message: "Server error" });
     }
 })
 export default router;

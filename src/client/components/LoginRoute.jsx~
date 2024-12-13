@@ -32,4 +32,4 @@ const LoginRoute = () => {
         </div>
     )
 }
-export default LoginRoute;
+export default LoginRoute
