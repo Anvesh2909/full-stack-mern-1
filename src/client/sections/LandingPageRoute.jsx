@@ -3,16 +3,16 @@ import Navbar from "./Navbar.jsx";
 const LandingPageRoute = () => (
     <div>
         <Navbar />
-        <div className="flex flex-col md:flex-row items-center justify-around">
-            <div className="md:w-3/5 text-center md:text-left w-[100%]">
-                <h1 className="font-bold text-5xl sm:text-5xl md:text-6xl lg:text-7xl">Host, Connect, Celebrate: Your Events, Our Platform!</h1>
-                <p className="mt-3 mb-3 text-3xl">
+        <div className="flex flex-col md:flex-row items-center justify-between p-9">
+            <div className="md:w-[60%] text-center md:text-left w-[100%]">
+                <h1 className="font-bold text-5xl sm:text-5xl md:text-6xl">Host, Connect, Celebrate: Your Events, Our Platform!</h1>
+                <p className="text-2xl mt-[30px] mb-[25px]">
                     Book and learn helpful tips from 3,168+ mentors in world-class
                     companies with our global community.
                 </p>
-                <button className="bg-primary rounded-3xl px-4 py-2 text-white">Explore Now</button>
+                <button className="bg-primary rounded-[10px] px-5 py-3 text-white">Explore Now</button>
             </div>
-            <img className="md:w-1/4 h-[300px]" src="/assets/images/hero.png" alt="hero image"/>
+            <img className="md:w-[30%] lg:w-[23%] md:h-[100%] h-[390px]" src="/assets/images/hero.png" alt="hero image"/>
         </div>
         <div>
             <h2>Trusted by Thousands of Events</h2>
@@ -32,4 +32,4 @@ const LandingPageRoute = () => (
     </div>
 )
 
-export default LandingPageRoute
+export default LandingPageRoute;

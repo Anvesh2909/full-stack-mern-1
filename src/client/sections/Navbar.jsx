@@ -4,10 +4,9 @@ import { useNavigate } from 'react-router-dom';
 const Navbar = () => {
     const navigate = useNavigate()
     const [loggedIn,setLoggedIn] = useState(false);
-    const profilePicture = ""
     const onClickLogin = () => {
         setLoggedIn(true);
-        //navigate("/login")
+        navigate("/login")
     }
     const onClickHome = () => {
         navigate("/")
@@ -23,7 +22,7 @@ const Navbar = () => {
     }
     return (
         <nav className="flex items-center justify-between p-9">
-            <img className="h-8" alt="logo" src="/assets/images/logo.svg"/>
+            <img onClick={onClickHome} className="h-8" alt="logo" src="/assets/images/logo.svg"/>
             {loggedIn? (
                 <>
                     <div className="flex align-center space-x-10">
@@ -32,16 +31,9 @@ const Navbar = () => {
                         <button onClick={onClickProfile}>My Profile</button>
                     </div>
                     <div className="flex items-center space-x-4">
-                        <img
-                            onClick={onClickProfile}
-                            className="w-10 h-10 rounded-full cursor-pointer"
-                            src={profilePicture}
-                            alt="Profile"
-                        />
-
                         <button
                             onClick={onClickLogout}
-                            className="text-red-500 hover:underline"
+                            className="text-red-500"
                         >
                             Logout
                         </button>
