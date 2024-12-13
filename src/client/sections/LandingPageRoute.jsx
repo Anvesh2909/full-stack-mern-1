@@ -6,7 +6,7 @@ const LandingPageRoute = () => (
         <div className="flex flex-col md:flex-row items-center justify-around">
             <div className="md:w-3/5 text-center md:text-left w-[100%]">
                 <h1 className="font-bold text-5xl sm:text-5xl md:text-6xl lg:text-7xl">Host, Connect, Celebrate: Your Events, Our Platform!</h1>
-                <p className="mt-3 mb-3">
+                <p className="mt-3 mb-3 text-3xl">
                     Book and learn helpful tips from 3,168+ mentors in world-class
                     companies with our global community.
                 </p>
